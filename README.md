@@ -19,7 +19,13 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 Then add this to you .vimrc
 ```vim
 call plug#begin('~/.vim/my-stuff')
-    Plug 'Shougo/deoplete.nvim'
+    if has('nvim')
+      Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+      Plug 'Shougo/deoplete.nvim'
+      Plug 'roxma/nvim-yarp'
+      Plug 'roxma/vim-hug-neovim-rpc'
+    endif
     Plug 'EHER/vim-deoplete-workflow'
 call plug#end()
 ```
